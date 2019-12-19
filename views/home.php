@@ -16,13 +16,15 @@
 
 	<section class="lista-produtos">
 		<div class="container">
-			<?php for($x = 0; $x < 3; $x++): ?>
+			<?php
+				$comida = deliveryModel::listarItems();
+				foreach($comida as $key => $value): ?>
 				<div class="box-single-food">
-					<img src="<?= INCLUDE_PATH ?>assets/images/img1.png">
-					<p>R$20,00</p>
-					<a href="<?= INCLUDE_PATH  ?>?addCard=0">Adicionar ao carrinho</a>
+					<img src="<?= INCLUDE_PATH ?>assets/images/<?= $value[0]?>">
+					<p>R$<?=  number_format($value[1], 2, ',', '.');  ?></p>
+					<a href="<?= INCLUDE_PATH  ?>?addCart=<?= $key; ?>">Adicionar ao carrinho</a>
 				</div><!--box-single-food-->
-			<?php endfor; ?>
+			<?php endforeach; ?>
 			<div class="clear"></div><!--clear-->
 		</div><!--container-->
 	</section>

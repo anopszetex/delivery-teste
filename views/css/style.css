@@ -63,6 +63,21 @@
 	margin: 10px 0;
 }
 
+table{
+	margin-top: 30px;
+	border-collapse: collapse;
+}
+
+table td{
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+table img{
+	max-width: 200px;
+	width: 100%;
+}
+
 @media screen and (max-width: 768px){
 	.box-single-food{
 		width: 100%;
