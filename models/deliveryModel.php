@@ -9,15 +9,18 @@
 		}
 
 		public static function addToCart($idProduto) {
-			if(!isset($_SESSION['carrinho'])) {
+			if($idProduto > count(self::$items) - 1)
+				return;
+			
+			if($idProduto < 0)
+				return;
+
+			if(!isset($_SESSION['carrinho']))
 				$_SESSION['carrinho']   = array();
-			} else {
-				if($idProduto > count(self::$items) - 1)
-					return;
-				if($idProduto < 0)
-					return;
+
+			if(isset($_SESSION['carrinho']))
 				$_SESSION['carrinho'][] = $idProduto;
-			}
+			
 		}
 
 		public static function getItemsCart() {
