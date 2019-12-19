@@ -1,4 +1,5 @@
-<?php  
+<?php
+	session_start();  
 	require('controllers/deliveryController.php');
 	require('models/deliveryModel.php');
 
