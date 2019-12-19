@@ -83,3 +83,10 @@ table img{
 		width: 100%;
 	}
 }
+
+@media screen and (max-width: 500px){
+	.descricao-home a{
+		margin-top: 5px;
+		margin-right: 75px;
+	}
+}
