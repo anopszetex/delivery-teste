@@ -33,6 +33,33 @@
 			<?php endforeach; ?>
 		</table>
 
+		<?php  
+			if(isset($_POST['acao'])) {
+				if(!isset($_SESSION['carrinho']))
+					deliveryModel::redirect(INCLUDE_PATH);
+
+				$metodoPagamento = deliveryModel::checkInput($_POST['opcao_pagamento']);
+				$trocoPagamento  = deliveryModel::checkInput($_POST['troco']);
+				$_SESSION['tipo_pagamento'] = $metodoPagamento;
+				$_SESSION['total']			= deliveryModel::getTotalPedido();
+				if(empty($metodoPagamento)) return;
+
+				if($metodoPagamento == 'dinheiro') {
+					if(!empty($trocoPagamento)) {
+						$valorTroco = $trocoPagamento - deliveryModel::getTotalPedido();
+						if($valorTroco >= 0)
+							$_SESSION['troco'] = $valorTroco;
+						else
+							die('Você não especificou um valor correto para o troco!');
+					} else {
+						die('Você escolheu dinheiro como pagamento, portanto você deve especificar!');
+					}
+				}
+
+				echo '<script>alert("Seu pedido foi foi efetuado com sucesso!")</script>';
+				deliveryModel::redirect(INCLUDE_PATH.'historico');
+			}
+		?>
 		<div class="pedido">
 			<p>O total do seu pedido foi: <b>R$<?= number_format(deliveryModel::getTotalPedido(), 2, ',', '.'); ?></b></p>
 			<form method="post">

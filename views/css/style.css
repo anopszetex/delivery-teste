@@ -94,13 +94,21 @@ table img{
 	display: block;
 }
 
-.pedido input{
+.pedido input[type=submit]{
 	background: #e53935;
 	display: inline-block;
 	padding: 5px 10px;
 	color: white;
 	margin: 10px 0;
 	border: none;
+	border-radius: 3px;
+}
+
+.troco{margin: 10px 0;}
+.troco p{margin-bottom: 8px;}
+
+.troco input[type=text]{
+	padding: 6px 8px;
 	border-radius: 3px;
 }
 

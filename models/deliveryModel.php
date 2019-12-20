@@ -2,7 +2,7 @@
 
 	class deliveryModel {
 
-		public static $items = array(array('img1.png', '20.00'), array('img2.jpg', '25.00'), array('img3.jpg', '30.00'));
+		public static $items = array(array('img1.png', '20.00', "Xis Mega"), array('img2.jpg', '25.00', 'Xis Tudo'), array('img3.jpg', '30.00', 'Xis Completo Turbo'));
 
 		public static function listarItems() {
 			return self::$items;
@@ -37,6 +37,15 @@
 				$total += self::getItem($value)[1];
 			}
 			return $total;
+		}
+
+		public static function checkInput($var) {
+			return htmlspecialchars(trim(stripcslashes($var)));
+		}
+
+		public static function redirect($url) {
+			echo '<script>location.href="'.$url.'"</script>';
+			die();
 		}
 
 	}

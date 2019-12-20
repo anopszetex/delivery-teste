@@ -18,6 +18,7 @@
 			if(isset($_GET['addCart'])) {
 				$idProduto = (int)$_GET['addCart'];
 				deliveryModel::addToCart($idProduto);
+				deliveryModel::redirect(INCLUDE_PATH);
 			}
 		}
 
