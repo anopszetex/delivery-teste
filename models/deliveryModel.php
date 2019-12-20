@@ -11,7 +11,7 @@
 		public static function addToCart($idProduto) {
 			if($idProduto > count(self::$items) - 1)
 				return;
-			
+
 			if($idProduto < 0)
 				return;
 
@@ -29,6 +29,14 @@
 
 		public static function getItem($id) {
 			return self::$items[$id];
+		}
+
+		public static function getTotalPedido() {
+			$total = 0;
+			foreach($_SESSION['carrinho'] as $key => $value) {
+				$total += self::getItem($value)[1];
+			}
+			return $total;
 		}
 
 	}

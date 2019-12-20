@@ -15,10 +15,7 @@
 	</section><!--descricao-home-->
 
 	<div class="container">
-		<?php 
-			if($carrinho = deliveryModel::getItemsCart()) {
-			  	$total = 0;
-		?>
+		<?php if($carrinho = deliveryModel::getItemsCart()) { ?>
 		<table style="width: 100%;">
 			<tr>
 				<td>Imagem</td>
@@ -35,10 +32,31 @@
 				</tr>
 			<?php endforeach; ?>
 		</table>
+
+		<div class="pedido">
+			<p>O total do seu pedido foi: <b>R$<?= number_format(deliveryModel::getTotalPedido(), 2, ',', '.'); ?></b></p>
+			<form method="post">
+				<p>Escolha seu método de pagamento: </p>
+				<select name="opcao_pagamento">
+					<option value="cartao_credito">Cartão de Crédito</option>
+					<option value="cartao_debito">Cartão de Debito</option>
+					<option value="dinheiro">Dinheiro</option>
+				</select>
+
+				<div style="display: none;" class="troco">
+					<p>Troco pra quanto?</p>
+					<input type="text" name="troco"><br />
+				</div><!--troco-->
+				<input type="submit" name="acao" value="Finalizar pedido">
+			</form>
+		</div><!--pedido-->
+
 		<?php } else { ?>
 			<h2 style="text-align: center; margin: 10px 0;">Seu carrinho está vazio!</h2>
 		<?php } ?>
 	</div><!--container-->
 
+<script src="<?= INCLUDE_PATH ?>views/js/jquery.js"></script>
+<script src="<?= INCLUDE_PATH ?>views/js/script.js"></script>
 </body>
 </html>
